@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Noypi Recipes</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_recipe">Recipe</string>
+
+
+    <string-array name="vegetable">
+
+
+    </string-array>
+    <string name="title_activity_recipe_list">RecipeListActivity</string>
+
+</resources>
+
+
+

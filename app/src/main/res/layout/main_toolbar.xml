@@ -1,0 +1,5 @@
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    style="@style/AppTheme.ToolBar"
+    android:layout_height="wrap_content"/>
