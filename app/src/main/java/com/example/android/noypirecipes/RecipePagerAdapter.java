@@ -19,7 +19,6 @@ public class RecipePagerAdapter extends FragmentPagerAdapter {
         this.table = table;
         this.context = context;
 
-
         count = DatabaseHelper.getInstance(context).getCount(table);
     }
 

@@ -13,13 +13,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageView
+            <com.example.android.noypirecipes.MyImageView
                 android:id="@+id/recipeImage"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
 
                 android:adjustViewBounds="true"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitXY"/>
 
             <TextView
                 android:id="@+id/recipeTitle"

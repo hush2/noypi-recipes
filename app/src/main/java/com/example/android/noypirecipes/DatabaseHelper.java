@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,13 +15,14 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DB_NAME = "recipes.db";
-    private static int DB_VERSION = 2;
+    private static int DB_VERSION = 3;
 
     private String DB_PATH;
 
     Context context;
 
     private static DatabaseHelper instance;
+    SQLiteDatabase db;
 
     public static synchronized DatabaseHelper getInstance(Context context) {
         if (instance == null) {
@@ -38,11 +38,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
 
-        //Checks database
         File dbFile = new File(DB_PATH + DB_NAME);
         if (!dbFile.exists()) {
-            getReadableDatabase(); // create an empty database
+            db = getReadableDatabase(); // create an empty database
             copyDatabase();
+        } else {
+            db = getReadableDatabase();
         }
     }
 
@@ -56,7 +57,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         copyDatabase();
     }
-
 
     private void copyDatabase() {
         try {
@@ -80,7 +80,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<Recipe> getAllRecipes(String table) {
 
         ArrayList<Recipe> recipes = new ArrayList<>();
-        SQLiteDatabase db = getReadableDatabase();
 
         String query = "select * from " + table + " order by title asc";
 
@@ -102,8 +101,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Recipe getRecipe(String table, int id) {
 
-        SQLiteDatabase db = getReadableDatabase();
-
         String query = "select title, text, image from " + table + " where _id = " + id;
         Recipe recipe = new Recipe();
         Cursor cursor = db.rawQuery(query, null);
@@ -116,13 +113,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return recipe;
     }
 
-
-
     public ArrayList<Category> getAllCategories() {
 
         ArrayList<Category> categories = new ArrayList<>();
-
-        SQLiteDatabase db = getReadableDatabase();
 
         Cursor cursor = db.rawQuery("select * from categories", null);
         if (cursor.moveToFirst()) {
@@ -143,7 +136,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Category category = new Category();
 
-        SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from categories where _id = " + id, null);
         if (cursor.moveToFirst()) {
             do {
@@ -158,7 +150,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public int getCount(String table) {
-        SQLiteDatabase db = getReadableDatabase();
+
         Cursor cursor = db.rawQuery("select count(*) from " + table, null);
         int count = 0;
         if (cursor.moveToFirst()) {

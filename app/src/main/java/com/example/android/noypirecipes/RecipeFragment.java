@@ -2,7 +2,6 @@ package com.example.android.noypirecipes;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,6 +21,9 @@ public class RecipeFragment extends Fragment {
     private int id;
     private String table;
     private Context context;
+
+    public RecipeFragment() {
+    }
 
     public RecipeFragment(Context context, int id, String table) {
 
@@ -52,7 +54,6 @@ public class RecipeFragment extends Fragment {
             //e.printStackTrace();
             Log.d("TAG", "Can't find image " + recipeImage);
         }
-
 
 
         return rootView;

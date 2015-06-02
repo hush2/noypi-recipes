@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
+                android:layout_height="50dp"
               android:orientation="horizontal"
               android:weightSum="1">
 
     <ImageView
-        android:src="@drawable/placeholder_75x75"
         android:id="@+id/imageView"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:background="#ffffffcc"
         android:layout_weight="0.00"
         android:adjustViewBounds="false"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitCenter"/>
 
     <TextView
         android:id="@+id/textView"
